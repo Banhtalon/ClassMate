@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mindx Class - Trang Chủ</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="container">
+    <div class="dashboard-header card">
+      <div class="avatar-container">
+        <img
+          src="https://s3.ap-southeast-1.amazonaws.com/kiddihub-prod/1/avatar-he-thong-truong-hoc-cong-nghe-mindx-mindx-technology-school-phuong-11-Mm6R80kQYTZ5MB3Q.jpg"
+          alt="Avatar" class="avatar" />
+        <div>
+          <h2 style="margin: 0; color: var(--primary)">
+            Chào mừng, Thầy/Cô!
+          </h2>
+          <p style="margin: 5px 0 0 0; color: #666">
+            Hệ thống Quản lý lớp Mindx.
+          </p>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px; min-width: 160px;">
+        <a href="setup.html" class="btn btn-orange"
+          style="font-size: 15px; padding: 10px 15px; width: 100%; box-sizing: border-box;">
+          <i class="fa-solid fa-plus"></i> Tạo lớp mới
+        </a>
+        <button onclick="logout()" class="btn btn-red"
+          style="font-size: 15px; padding: 10px 15px; width: 100%; box-sizing: border-box;">
+          <i class="fa-solid fa-right-from-bracket"></i> Đăng xuất
+        </button>
+      </div>
+    </div>
+
+    <h3 style="
+          color: var(--primary);
+          border-bottom: 2px solid var(--secondary);
+          display: inline-block;
+          padding-bottom: 5px;
+        ">
+      <i class="fa-solid fa-layer-group"></i> Các lớp đang quản lý
+    </h3>
+
+    <div id="classList" class="class-grid"></div>
+  </div>
+
+  <footer class="site-footer">
+    <p>
+      <strong>Mindx Class</strong> © 2026. Thiết kế bởi
+      <strong>Mr Quang</strong>.
+    </p>
+  </footer>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import {
+      getDatabase,
+      ref,
+      set,
+      onValue,
+    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+    import {
+      getAuth,
+      onAuthStateChanged,
+      signOut,
+    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+    // Cấu hình Firebase của bạn (Lấy ở Bước 1)
+    const firebaseConfig = {
+      apiKey: "AIzaSyCsfhA8nWRxS7MSI_J4KfpixUqON-2e864",
+      authDomain: "class-management-mindxvt.firebaseapp.com",
+      databaseURL:
+        "https://class-management-mindxvt-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "class-management-mindxvt",
+      storageBucket: "class-management-mindxvt.firebasestorage.app",
+      messagingSenderId: "87801662244",
+      appId: "1:87801662244:web:a3a41834fdb25ea54a01b1",
+      measurementId: "G-5ZXQ2JD7EB",
+    };
+
+    // Khởi tạo Firebase
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+    const auth = getAuth(app); // Khởi tạo Auth
+
+    // Đưa ra window để script.js gọi được
+    window.db_firebase = database;
+    window.ref_firebase = ref;
+    window.set_firebase = set;
+    window.onValue_firebase = onValue;
+    window.auth_firebase = auth;
+    window.onAuthStateChanged_firebase = onAuthStateChanged;
+    window.signOut_firebase = signOut;
+  </script>
+  <script src="script.js"></script>
+</body>
+
+</html>

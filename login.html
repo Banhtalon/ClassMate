@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Đăng Nhập - MindX Class</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+
+  </style>
+</head>
+
+<body style="
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    ">
+  <div class="card" style="width: 100%; max-width: 400px; text-align: center">
+    <h2 class="section-title" style="justify-content: center">
+      🔒 Đăng Nhập Hệ Thống
+    </h2>
+    <form id="loginForm">
+      <div class="form-group" style="text-align: left">
+        <label>Email:</label>
+        <input type="email" id="email" required placeholder="admin@mindx.edu.vn" />
+      </div>
+      <div class="form-group" style="text-align: left">
+        <label>Mật khẩu:</label>
+        <input type="password" id="password" required placeholder="••••••••" />
+      </div>
+      <p id="error-msg" style="color: red; font-size: 14px; display: none">
+        Sai email hoặc mật khẩu!
+      </p>
+      <button type="submit" class="btn btn-green" style="width: 100%; padding: 12px; font-size: 16px">
+        Đăng Nhập
+      </button>
+    </form>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import {
+      getAuth,
+      signInWithEmailAndPassword,
+    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+    // DÁN FIREBASE CONFIG CỦA BẠN VÀO ĐÂY
+    const firebaseConfig = {
+      apiKey: "AIzaSyCsfhA8nWRxS7MSI_J4KfpixUqON-2e864",
+      authDomain: "class-management-mindxvt.firebaseapp.com",
+      databaseURL:
+        "https://class-management-mindxvt-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "class-management-mindxvt",
+      storageBucket: "class-management-mindxvt.firebasestorage.app",
+      messagingSenderId: "87801662244",
+      appId: "1:87801662244:web:a3a41834fdb25ea54a01b1",
+      measurementId: "G-5ZXQ2JD7EB",
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // Xử lý sự kiện đăng nhập
+    document.getElementById("loginForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const email = document.getElementById("email").value;
+      const pass = document.getElementById("password").value;
+
+      signInWithEmailAndPassword(auth, email, pass)
+        .then((userCredential) => {
+          // Đăng nhập thành công -> Chuyển về trang chủ
+          window.location.href = "home.html";
+        })
+        .catch((error) => {
+          document.getElementById("error-msg").style.display = "block";
+        });
+    });
+  </script>
+</body>
+
+</html>

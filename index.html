@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MindX Class - Quản lý lớp học</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div style="margin-bottom: 15px; display: flex; gap: 10px">
+        <a href="home.html" class="btn btn-green">
+          <i class="fa-solid fa-house"></i> Về trang chủ
+        </a>
+      </div>
+
+      <div class="card">
+        <h2 class="section-title">
+          <i class="fa-solid fa-laptop-code"></i> Thông tin lớp học
+        </h2>
+        <div class="class-info-grid">
+          <div>
+            <strong>Tên lớp:</strong> <span id="info-className">...</span>
+          </div>
+          <div>
+            <strong>Mã lớp:</strong> <span id="info-classCode">...</span>
+          </div>
+          <div><strong>Bộ môn:</strong> <span id="info-subject">...</span></div>
+          <div><strong>Trình độ:</strong> <span id="info-level">...</span></div>
+          <div>
+            <strong>Lịch học:</strong> <span id="info-schedule">...</span>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="card session-header"
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          flex-wrap: wrap;
+          gap: 15px;
+        "
+      >
+        <div
+          class="selector-group"
+          style="display: flex; align-items: center; gap: 10px"
+        >
+          <label><strong>Chọn buổi học:</strong></label>
+          <select
+            id="sessionSelect"
+            class="form-group"
+            style="margin-bottom: 0; width: 150px"
+            onchange="changeSession()"
+          ></select>
+        </div>
+
+        <a href="summary.html" class="btn btn-yellow">
+          <i class="fa-solid fa-chart-line"></i> Xem Tổng Kết 9 Buổi
+        </a>
+      </div>
+
+      <div class="card table-card">
+        <table class="student-table">
+          <thead>
+            <tr>
+              <th>Học viên</th>
+              <th>Điểm sao</th>
+              <th>Thao tác điểm</th>
+              <th>Thao tác</th>
+            </tr>
+          </thead>
+          <tbody id="studentTableBody"></tbody>
+        </table>
+      </div>
+
+      <div class="action-container">
+        <button
+          class="btn btn-save btn-orange"
+          style="padding: 12px 25px"
+          onclick="saveCurrentSession()"
+        >
+          <i class="fa-solid fa-floppy-disk"></i> Lưu dữ liệu buổi này
+        </button>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <p>
+        <strong>Mindx Class</strong> © 2026. Thiết kế bởi
+        <strong>Mr Quang</strong>.
+      </p>
+    </footer>
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+      import {
+        getDatabase,
+        ref,
+        set,
+        onValue,
+      } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+      import {
+        getAuth,
+        onAuthStateChanged,
+        signOut,
+      } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+      // Cấu hình Firebase của bạn (Lấy ở Bước 1)
+      const firebaseConfig = {
+        apiKey: "AIzaSyCsfhA8nWRxS7MSI_J4KfpixUqON-2e864",
+        authDomain: "class-management-mindxvt.firebaseapp.com",
+        databaseURL:
+          "https://class-management-mindxvt-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "class-management-mindxvt",
+        storageBucket: "class-management-mindxvt.firebasestorage.app",
+        messagingSenderId: "87801662244",
+        appId: "1:87801662244:web:a3a41834fdb25ea54a01b1",
+        measurementId: "G-5ZXQ2JD7EB",
+      };
+
+      // Khởi tạo Firebase
+      const app = initializeApp(firebaseConfig);
+      const database = getDatabase(app);
+      const auth = getAuth(app); // Khởi tạo Auth
+
+      // Đưa ra window để script.js gọi được
+      window.db_firebase = database;
+      window.ref_firebase = ref;
+      window.set_firebase = set;
+      window.onValue_firebase = onValue;
+      window.auth_firebase = auth;
+      window.onAuthStateChanged_firebase = onAuthStateChanged;
+      window.signOut_firebase = signOut;
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>

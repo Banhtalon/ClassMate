@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Khởi Tạo Lớp Học</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container setup-container">
+      <a href="home.html" class="btn btn-orange" style="margin-bottom: 15px"
+        ><i class="fa-solid fa-arrow-left"></i> Hủy & Về trang chủ</a
+      >
+      <div class="card">
+        <h2 class="section-title">
+          <i class="fa-solid fa-chalkboard-user"></i> Khai báo lớp học mới
+        </h2>
+        <form id="setupForm" onsubmit="createNewClass(event)">
+          <div class="form-group">
+            <label>Tên lớp:</label>
+            <input
+              type="text"
+              id="className"
+              placeholder="VD: ONL-C4K-PTA32"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label>Mã lớp (Dùng để lưu trữ riêng biệt):</label>
+            <input
+              type="text"
+              id="classCode"
+              placeholder="VD: PTA32"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label>Bộ môn:</label>
+            <input
+              type="text"
+              id="subject"
+              placeholder="VD: Python App"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label>Trình độ:</label>
+            <input type="text" id="level" placeholder="VD: Advanced" required />
+          </div>
+          <div class="form-group">
+            <label>Lịch học:</label>
+            <input
+              type="text"
+              id="schedule"
+              placeholder="VD: CN, 19:00 - 21:00"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label
+              >Danh sách học viên (Mỗi người 1 dòng, có thể copy từ
+              Excel):</label
+            >
+            <textarea
+              id="studentList"
+              rows="6"
+              placeholder="Khánh Duy&#10;Quốc Tuấn&#10;Quốc Khang"
+              required
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            class="btn btn-orange"
+            style="width: 100%; padding: 12px; font-size: 16px"
+          >
+            <i class="fa-solid fa-check"></i> Bắt đầu quản lý
+          </button>
+        </form>
+      </div>
+    </div>
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+      import {
+        getDatabase,
+        ref,
+        set,
+        onValue,
+      } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+      import {
+        getAuth,
+        onAuthStateChanged,
+        signOut,
+      } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+      // Cấu hình Firebase của bạn (Lấy ở Bước 1)
+      const firebaseConfig = {
+        apiKey: "AIzaSyCsfhA8nWRxS7MSI_J4KfpixUqON-2e864",
+        authDomain: "class-management-mindxvt.firebaseapp.com",
+        databaseURL:
+          "https://class-management-mindxvt-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "class-management-mindxvt",
+        storageBucket: "class-management-mindxvt.firebasestorage.app",
+        messagingSenderId: "87801662244",
+        appId: "1:87801662244:web:a3a41834fdb25ea54a01b1",
+        measurementId: "G-5ZXQ2JD7EB",
+      };
+
+      // Khởi tạo Firebase
+      const app = initializeApp(firebaseConfig);
+      const database = getDatabase(app);
+      const auth = getAuth(app); // Khởi tạo Auth
+
+      // Đưa ra window để script.js gọi được
+      window.db_firebase = database;
+      window.ref_firebase = ref;
+      window.set_firebase = set;
+      window.onValue_firebase = onValue;
+      window.auth_firebase = auth;
+      window.onAuthStateChanged_firebase = onAuthStateChanged;
+      window.signOut_firebase = signOut;
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>

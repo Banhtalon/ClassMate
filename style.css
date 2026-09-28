@@ -1,0 +1,222 @@
+/* BẢNG MÀU MỚI */
+:root {
+  --bg-main: #fdfaf3; /* Màu nền hơi kem nhẹ cho hợp tông ấm */
+  --bg-card: #ffffff;
+  --primary: #5b7e3c; /* Xanh lá - Tiêu đề, viền, nút chính */
+  --secondary: #ffd65a; /* Vàng - Sao, trang trí, hover */
+  --accent: #ff9d23; /* Cam - Nút nhấn mạnh, tạo mới */
+  --danger: #ea5252; /* Đỏ - Xóa, vắng mặt, trừ điểm */
+  --border-color: #e5e7eb;
+  --text-main: #333333;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.container {
+  width: 95%;
+  max-width: 1100px;
+  margin: 20px auto;
+  flex: 1;
+}
+
+/* Thẻ Card chung */
+.card {
+  background: var(--bg-card);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--border-color);
+}
+
+/* Buttons */
+.btn {
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 10px 15px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 14px;
+  transition: 0.3s;
+  color: white;
+}
+.btn:active {
+  transform: scale(0.95);
+}
+.btn-green {
+  background: var(--primary);
+}
+.btn-green:hover {
+  background: #4a6631;
+  box-shadow: 0 4px 10px rgba(91, 126, 60, 0.3);
+}
+.btn-yellow {
+  background: var(--secondary);
+  color: #333;
+}
+.btn-yellow:hover {
+  background: #f0c541;
+  box-shadow: 0 4px 10px rgba(255, 214, 90, 0.4);
+}
+.btn-orange {
+  background: var(--accent);
+}
+.btn-orange:hover {
+  background: #e88b1b;
+  box-shadow: 0 4px 10px rgba(255, 157, 35, 0.3);
+}
+.btn-red {
+  background: var(--danger);
+}
+.btn-red:hover {
+  background: #d64545;
+  box-shadow: 0 4px 10px rgba(234, 82, 82, 0.3);
+}
+
+/* Trang chủ: Dashboard & Avatar */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-left: 6px solid var(--secondary);
+}
+.avatar-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.avatar {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--secondary);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.class-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+  margin-top: 15px;
+}
+
+/* Thẻ của từng lớp học ở trang chủ */
+.class-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  border-top: 5px solid var(--primary);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s;
+}
+.class-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+.class-card h3 {
+  margin: 0 0 10px 0;
+  color: var(--primary);
+  font-size: 1.3rem;
+}
+.class-card p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #555;
+}
+.class-card-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+  border-top: 1px dashed #eee;
+  padding-top: 15px;
+}
+
+/* Bảng điểm & Các thành phần khác */
+.section-title {
+  color: var(--primary);
+  font-size: 1.2rem;
+  margin: 0 0 15px 0;
+}
+.class-info-grid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.student-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.student-table th,
+.student-table td {
+  padding: 14px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+.student-table th {
+  background: #f9fafb;
+  color: var(--primary);
+  font-weight: bold;
+}
+.stars-container {
+  color: var(--secondary);
+  display: flex;
+  gap: 4px;
+  font-size: 18px;
+}
+.absent {
+  text-decoration: line-through;
+  color: var(--danger);
+  opacity: 0.7;
+}
+.badge-count {
+  color: var(--primary);
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* Form Setup */
+.form-group {
+  margin-bottom: 15px;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: var(--primary);
+}
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+.site-footer {
+  text-align: center;
+  padding: 20px;
+  background: white;
+  border-top: 1px solid var(--border-color);
+  font-size: 13px;
+  color: #777;
+}

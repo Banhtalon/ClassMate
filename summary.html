@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tổng Kết Lớp Học</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
+          <h2 class="section-title" style="margin: 0">
+            <i class="fa-solid fa-trophy"></i> Bảng Tổng Kết Sau 9 Buổi
+          </h2>
+          <a href="index.html" class="btn btn-green"
+            ><i class="fa-solid fa-arrow-left"></i> Quay lại lớp học</a
+          >
+        </div>
+      </div>
+
+      <div class="card table-card">
+        <table class="student-table">
+          <thead>
+            <tr>
+              <th>Học viên</th>
+              <th>Tổng sao tích lũy</th>
+              <th>Tổng huy hiệu nhận được</th>
+              <th>Xếp loại</th>
+            </tr>
+          </thead>
+          <tbody id="summaryTableBody"></tbody>
+        </table>
+      </div>
+
+      <div class="action-container">
+        <button class="btn btn-red" onclick="resetAllData()">
+          Xóa toàn bộ dữ liệu (Reset)
+        </button>
+      </div>
+    </div>
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+      import {
+        getDatabase,
+        ref,
+        set,
+        onValue,
+      } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+      import {
+        getAuth,
+        onAuthStateChanged,
+        signOut,
+      } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+      // Cấu hình Firebase của bạn (Lấy ở Bước 1)
+      const firebaseConfig = {
+        apiKey: "AIzaSyCsfhA8nWRxS7MSI_J4KfpixUqON-2e864",
+        authDomain: "class-management-mindxvt.firebaseapp.com",
+        databaseURL:
+          "https://class-management-mindxvt-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "class-management-mindxvt",
+        storageBucket: "class-management-mindxvt.firebasestorage.app",
+        messagingSenderId: "87801662244",
+        appId: "1:87801662244:web:a3a41834fdb25ea54a01b1",
+        measurementId: "G-5ZXQ2JD7EB",
+      };
+
+      // Khởi tạo Firebase
+      const app = initializeApp(firebaseConfig);
+      const database = getDatabase(app);
+      const auth = getAuth(app); // Khởi tạo Auth
+
+      // Đưa ra window để script.js gọi được
+      window.db_firebase = database;
+      window.ref_firebase = ref;
+      window.set_firebase = set;
+      window.onValue_firebase = onValue;
+      window.auth_firebase = auth;
+      window.onAuthStateChanged_firebase = onAuthStateChanged;
+      window.signOut_firebase = signOut;
+    </script>
+    <script src="script.js"></script>
+    <script>
+      // Chỉ chạy hàm này khi ở trang summary
+      if (document.getElementById("summaryTableBody")) {
+        document.addEventListener("DOMContentLoaded", renderSummary);
+      }
+    </script>
+  </body>
+</html>
